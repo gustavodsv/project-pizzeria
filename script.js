@@ -1,4 +1,6 @@
+let cart = [];
 let modalQt = 1;
+let modalKey = 0;
 
 // funções, atalhos para querySelector
 const qS = (el)=>document.querySelector(el);
@@ -19,6 +21,7 @@ pizzaJson.map((item, index)=>{
         // adicionando chave às pizzas
         let key = e.target.closest('.pizza-item').getAttribute('data-key');
         modalQt = 1;
+        modalKey = key;
         
         // adicionando informações
         qS('.pizzaBig img').src = pizzaJson[key].img; //img
@@ -38,7 +41,7 @@ pizzaJson.map((item, index)=>{
 
         // abrindo janela+animação
         qS('.pizzaWindowArea').style.opacity = 0;
-        qS('.pizzaWindowArea').style.display = 'flex';
+        qS('.pizzaWindowArea').style.display = 'flex'
         setTimeout(()=>{
             qS('.pizzaWindowArea').style.opacity = 1;
         },200); // 1s = 1/5
@@ -78,4 +81,17 @@ qSA('.pizzaInfo--size').forEach((size, sizeIndex)=>{
         qS('.pizzaInfo--size.selected').classList.remove('selected')
         size.classList.add('selected')
     })
+})
+
+// adicionar ao carrinho
+qS('.pizzaInfo--addButton').addEventListener('click', ()=>{
+    let size = parseInt(qS('.pizzaInfo--size.selected').getAttribute('data-key'))
+    
+    cart.push({
+        id:pizzaJson[modalKey].id,
+        size:size,
+        qt:modalQt
+    })
+
+    closeModal()
 })
