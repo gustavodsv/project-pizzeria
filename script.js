@@ -56,6 +56,26 @@ function closeModal(){
     }, 500)
 }
 
+// fechar MODAL
 qSA('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item)=>{
     item.addEventListener('click', closeModal)
+})
+
+// Modal qt
+qS('.pizzaInfo--qtmenos').addEventListener('click', ()=>{
+    if(modalQt > 1){
+        modalQt--
+        qS('.pizzaInfo--qt').innerHTML = modalQt
+    }
+})
+qS('.pizzaInfo--qtmais').addEventListener('click', ()=>{
+    modalQt++
+    qS('.pizzaInfo--qt').innerHTML = modalQt
+})
+
+qSA('.pizzaInfo--size').forEach((size, sizeIndex)=>{
+    size.addEventListener('click', (e)=>{
+        qS('.pizzaInfo--size.selected').classList.remove('selected')
+        size.classList.add('selected')
+    })
 })
