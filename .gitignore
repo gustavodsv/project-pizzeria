@@ -1,0 +1,7 @@
+cloneNode(true) = clona itens selecionados
+
+append(itemNome) = adiciona
+
+toFixed(2) = 2 itens apos a virgula
+
+map() = busca itens de um array, podendo retornar valores diferentes
