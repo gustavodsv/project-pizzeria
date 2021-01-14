@@ -94,7 +94,7 @@ qS('.pizzaInfo--addButton').addEventListener('click', ()=>{
     })
 
     if(key > -1){
-        cart[key].qt += modalQt;
+        cart[key].qt += modalQt
     } else {
         cart.push({
             identifier,
@@ -103,6 +103,23 @@ qS('.pizzaInfo--addButton').addEventListener('click', ()=>{
             qt:modalQt
         })
     }
-
+    updateCart()
     closeModal()
 })
+
+function updateCart(){
+    if(cart.length > 0){
+        qS('aside').classList.add('show')
+
+        for(let i in cart){
+
+            let pizzaItem = pizzaJson.find((item)=>{
+                return item.id == cart[i].id
+            })
+            console.log(pizzaItem)
+
+        }
+    } else {
+        qS('aside').classList.remove('show')
+    }
+}
