@@ -87,11 +87,22 @@ qSA('.pizzaInfo--size').forEach((size, sizeIndex)=>{
 qS('.pizzaInfo--addButton').addEventListener('click', ()=>{
     let size = parseInt(qS('.pizzaInfo--size.selected').getAttribute('data-key'))
     
-    cart.push({
-        id:pizzaJson[modalKey].id,
-        size:size,
-        qt:modalQt
+    let identifier = 'pizza: '+pizzaJson[modalKey].id+' tamanho: '+size
+
+    let key = cart.findIndex((item)=>{
+        return item.identifier == identifier
     })
+
+    if(key > -1){
+        cart[key].qt += modalQt;
+    } else {
+        cart.push({
+            identifier,
+            id:pizzaJson[modalKey].id,
+            size:size,
+            qt:modalQt
+        })
+    }
 
     closeModal()
 })
